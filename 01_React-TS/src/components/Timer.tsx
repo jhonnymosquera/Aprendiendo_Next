@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TimerArgs = {
 	milisegundos: number;
 };
 
-export default function Timer(arg: TimerArgs) {
+export default function Timer({ milisegundos }: TimerArgs) {
 	const [segundos, setSegundos] = useState(0);
 
 	useEffect(() => {
-		let time = setInterval(() => {
+		const interval = setInterval(() => {
 			setSegundos(s => s + 1);
-		}, arg.milisegundos);
+		}, milisegundos);
 
-		if (segundos == 10) {
-			clearInterval(time);
-		}
-	}, []);
+		return () => clearInterval(interval);
+	}, [milisegundos]);
 
 	return (
 		<>

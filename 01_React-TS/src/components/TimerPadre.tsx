@@ -23,7 +23,7 @@ export default function TimerPadre() {
 			<button
 				className="btn btn-outline-primary"
 				onClick={() => {
-					setMilisegundos(22000);
+					setMilisegundos(2000);
 				}}
 			>
 				2000
