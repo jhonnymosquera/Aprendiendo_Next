@@ -1,17 +1,12 @@
 import { Todo } from "../interfaces/interfaces";
-import { useContext } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { useTodos } from "../hooks/useTodos";
 
 interface props {
 	todo: Todo;
 }
 
 export default function TodoItem({ todo }: props) {
-	const { toggleTodo } = useContext(TodoContext);
-
-	const handleClick = () => {
-		toggleTodo(todo.id);
-	};
+	const { toggleTodo } = useTodos();
 
 	return (
 		<li
@@ -19,7 +14,7 @@ export default function TodoItem({ todo }: props) {
 				cursor: "pointer",
 				textDecoration: todo.completed ? "line-through" : "",
 			}}
-			onDoubleClick={handleClick}
+			onDoubleClick={() => toggleTodo(todo.id)}
 		>
 			{todo.desc}
 		</li>
