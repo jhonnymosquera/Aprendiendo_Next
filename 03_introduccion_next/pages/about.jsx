@@ -1,17 +1,14 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import React from 'react'
+import HeadLayout from "@/components/layouts/HeadLayout";
+import Head from "next/head";
+import Link from "next/link";
+import React from "react";
 
 export default function about() {
-    return (
+	return (
+		<>
+			<HeadLayout title={"About"} description={"About Page"} />
 
-        <>
-            <Head>
-                <title>About</title>
-                <meta name="description" content="about" />
-            </Head>
-
-            <h1>About</h1>
-        </>
-    )
+			<h1>About</h1>
+		</>
+	);
 }

@@ -1,7 +1,12 @@
-import React from 'react'
+import HeadLayout from "@/components/layouts/HeadLayout";
+import React from "react";
 
 export default function Contact() {
-    return (
-        <h1>Contact</h1>
-    )
+	return (
+		<>
+			<HeadLayout title={"Contact"} description={"Contact Page"} />
+
+			<h1>Contact</h1>
+		</>
+	);
 }
