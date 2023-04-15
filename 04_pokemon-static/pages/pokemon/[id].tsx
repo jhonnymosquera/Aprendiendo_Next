@@ -41,18 +41,9 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 
 	return (
 		<Layout title={pokemon.name}>
-			<Grid.Container
-				css={{ marginTop: "5px" }}
-				gap={2}
-			>
-				<Grid
-					xs={12}
-					sm={4}
-				>
-					<Card
-						hoverable
-						css={{ padding: "30px" }}
-					>
+			<Grid.Container css={{ marginTop: "5px" }} gap={2}>
+				<Grid xs={12} sm={4}>
+					<Card hoverable css={{ padding: "30px" }}>
 						<Card.Body>
 							<Card.Image
 								src={pokemon.sprites.other?.dream_world.front_default || "/no-image.png"}
@@ -64,24 +55,14 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 					</Card>
 				</Grid>
 
-				<Grid
-					xs={12}
-					sm={8}
-				>
+				<Grid xs={12} sm={8}>
 					<Card>
 						<Card.Header css={{ display: "flex", flexDirection: "column" }}>
-							<Text
-								h1
-								transform="capitalize"
-							>
+							<Text h1 transform="capitalize">
 								{pokemon.name}
 							</Text>
 
-							<Button
-								color="gradient"
-								ghost={!isInfavorites}
-								onClick={onToggleFavorite}
-							>
+							<Button color="gradient" ghost={!isInfavorites} onClick={onToggleFavorite}>
 								{save}
 							</Button>
 						</Card.Header>
@@ -89,35 +70,11 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 						<Card.Body>
 							<Text size={30}>Sprites:</Text>
 
-							<Container
-								direction="row"
-								display="flex"
-								gap={0}
-							>
-								<Image
-									src={pokemon.sprites.front_default}
-									alt={pokemon.name}
-									width={100}
-									height={100}
-								/>
-								<Image
-									src={pokemon.sprites.back_default}
-									alt={pokemon.name}
-									width={100}
-									height={100}
-								/>
-								<Image
-									src={pokemon.sprites.front_shiny}
-									alt={pokemon.name}
-									width={100}
-									height={100}
-								/>
-								<Image
-									src={pokemon.sprites.back_shiny}
-									alt={pokemon.name}
-									width={100}
-									height={100}
-								/>
+							<Container direction="row" display="flex" gap={0}>
+								<Image src={pokemon.sprites.front_default} alt={pokemon.name} width={100} height={100} />
+								<Image src={pokemon.sprites.back_default} alt={pokemon.name} width={100} height={100} />
+								<Image src={pokemon.sprites.front_shiny} alt={pokemon.name} width={100} height={100} />
+								<Image src={pokemon.sprites.back_shiny} alt={pokemon.name} width={100} height={100} />
 							</Container>
 						</Card.Body>
 					</Card>
@@ -136,17 +93,30 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 		paths: pokemons151.map((id) => ({
 			params: { id },
 		})),
-		fallback: false,
+		// fallback: false,
+		fallback: "blocking",
 	};
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { id } = params as { id: string };
 
+	const pokemon = await getPokemonInfo(id);
+
+	if (!pokemon) {
+		return {
+			redirect: {
+				destination: "/",
+				permanent: false,
+			},
+		};
+	}
+
 	return {
 		props: {
-			pokemon: await getPokemonInfo(id),
+			pokemon,
 		},
+		revalidate: 86400,
 	};
 };
 
