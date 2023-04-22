@@ -1,3 +1,4 @@
+import { EntriesProviders } from "@/Context/entries";
 import { UIProviders } from "@/Context/ui";
 import "@/styles/globals.css";
 import { darkTheme, lightTheme } from "@/themes";
@@ -6,11 +7,13 @@ import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<UIProviders>
-			<ThemeProvider theme={darkTheme}>
-				<CssBaseline />
-				<Component {...pageProps} />
-			</ThemeProvider>
-		</UIProviders>
+		<EntriesProviders>
+			<UIProviders>
+				<ThemeProvider theme={darkTheme}>
+					<CssBaseline />
+					<Component {...pageProps} />
+				</ThemeProvider>
+			</UIProviders>
+		</EntriesProviders>
 	);
 }
