@@ -1,6 +1,9 @@
 import HeadLayout from "@/components/layouts/HeadLayout";
 
 export default function index() {
+
+	
+
 	return (
 		<div>
 			<HeadLayout title={"Pricing"} description={"Pricing Page"} />
