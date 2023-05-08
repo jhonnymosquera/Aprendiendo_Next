@@ -1,7 +1,7 @@
-import { FC, useReducer } from "react";
-import { EntriesContext, entriesReducer } from "./";
-import { Entry } from "../../interfaces/entry";
-import { v4 as uuidv4 } from "uuid";
+import { FC, useReducer } from 'react';
+import { EntriesContext, entriesReducer } from './';
+import { Entry } from '../../interfaces/entry';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface EntriesState {
 	entries: Entry[];
@@ -11,21 +11,24 @@ const Entries_INITIAL_STATE: EntriesState = {
 	entries: [
 		{
 			_id: uuidv4(),
-			description: "Loeramksda sdkajsdsj dlkajsdlkjasldkjalsdkjaldjlas kdjlaskjdalskjaldkjalskdjlask jdlaskdlasndlasdna",
+			description:
+				'Pendiende: Loeramksda sdkajsdsj dlkajsdlkjasldkjalsdkjaldjlas kdjlaskjdalskjaldkjalskdjlask jdlaskdlasndlasdna',
 			createAt: Date.now(),
-			status: "pendig",
+			status: 'pendig',
 		},
 		{
 			_id: uuidv4(),
-			description: "Loeramksda sdkajsdsj dlkajsdlkjasldkjalsdkjaldjlas kdjlaskjdalskjaldkjalskdjlask jdlaskdlasndlasdna",
+			description:
+				'En ProgresoLoeramksda sdkajsdsj dlkajsdlkjasldkjalsdkjaldjlas kdjlaskjdalskjaldkjalskdjlask jdlaskdlasndlasdna',
 			createAt: Date.now() - 1000000,
-			status: "in-progress",
+			status: 'in-progress',
 		},
 		{
 			_id: uuidv4(),
-			description: "Loeramksda sdkajsdsj dlkajsdlkjasldkjalsdkjaldjlas kdjlaskjdalskjaldkjalskdjlask jdlaskdlasndlasdna",
+			description:
+				'Finished: Loeramksda sdkajsdsj dlkajsdlkjasldkjalsdkjaldjlas kdjlaskjdalskjaldkjalskdjlask jdlaskdlasndlasdna',
 			createAt: Date.now() - 100000,
-			status: "completed",
+			status: 'finished',
 		},
 	],
 };

@@ -8,4 +8,4 @@ export interface Entry {
 	status: EnryStatus;
 }
 
-export type EnryStatus = "pendig" | "in-progress" | "completed";
+export type EnryStatus = 'pendig' | 'in-progress' | 'finished';
